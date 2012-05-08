@@ -413,7 +413,7 @@ function print_lunch_menu()
        echo "  (ohai, koush!)"
     fi
     echo
-    if [ "z${BlackICE_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${BLACKICE_DEVICES_ONLY}" != "z" ]; then
        echo "Breakfast menu... pick a combo:"
     else
        echo "Lunch menu... pick a combo:"
@@ -427,7 +427,7 @@ function print_lunch_menu()
         i=$(($i+1))
     done
 
-    if [ "z${BlackICE_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${BLACKICE_DEVICES_ONLY}" != "z" ]; then
        echo "... and don't forget the bacon!"
     fi
 
@@ -449,7 +449,7 @@ function brunch()
 function breakfast()
 {
     target=$1
-    BlackICE_DEVICES_ONLY="true"
+    BLACKICE_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
     for f in `/bin/ls vendor/BlackICE/vendorsetup.sh 2> /dev/null`
