@@ -60,16 +60,15 @@ function check_product()
 
     if (echo -n $1 | grep -q -e "^BlackICE_") ; then
        BlackICE_BUILD=$(echo -n $1 | sed -e 's/^BlackICE_//g')
+       NAM_VARIANT=$(echo -n $1 | sed -e 's/^BlackICE_//g')
+    elif (echo -n $1 | grep -q -e "htc_") ; then
+       BlackICE_BUILD=
+       NAM_VARIANT=$(echo -n $1)
     else
        BlackICE_BUILD=
+       NAM_VARIANT=
     fi
     export BlackICE_BUILD
-
-    if (echo -n $1 | grep -q -e "htc_") ; then
-        NAM_VARIANT=$(echo -n $1)
-    else
-        NAM_VARIANT=
-    fi
     export NAM_VARIANT
 
     CALLED_FROM_SETUP=true BUILD_SYSTEM=build/core \
@@ -556,10 +555,10 @@ function lunch()
         echo
         return 1
     fi
-
+    
     local build_device=$(echo $product | sed -e "s/^[^\-]*_//")
-
-        export TARGET_BUILD_DEVICE=$build_device
+	
+	export TARGET_BUILD_DEVICE=$build_device
     export TARGET_PRODUCT=$product
     export TARGET_BUILD_VARIANT=$variant
     export TARGET_BUILD_TYPE=release
