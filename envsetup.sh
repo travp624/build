@@ -11,7 +11,6 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
 - godir:   Go to the directory containing a file.
 - mka:      Builds using SCHED_BATCH on all processors
 - mbot:     Builds for all devices using the psuedo buildbot
-- mbotclean: Cleans out folder then builds all devices using psuedo buildbot.
 - reposync: Parallel repo sync using ionice and SCHED_BATCH
 
 Look at the source to view more functions. The complete list is:
@@ -1137,12 +1136,6 @@ function mbot() {
     unset LUNCH_MENU_CHOICES
     croot
     ./vendor/BlackICE/bot/deploy.sh
-}
-
-function mbotclean() {
-    unset LUNCH_MENU_CHOICES
-    croot
-    ./vendor/BlackICE/bot/deploy.sh -c
 }
 
 function reposync() {
